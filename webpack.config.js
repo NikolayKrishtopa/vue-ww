@@ -1,5 +1,4 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
@@ -8,9 +7,9 @@ module.exports = {
     main: './src/main.js',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
-    publicPath: '',
+    path: path.resolve(__dirname, 'dist/weather-widget'),
+    filename: 'weatherWidget.js',
+    assetModuleFilename: 'images/ww_[name][ext]',
   },
   mode: 'development',
   devServer: {
@@ -41,11 +40,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
-    new CleanWebpackPlugin(),
-    new VueLoaderPlugin(),
-  ],
+  plugins: [new CleanWebpackPlugin(), new VueLoaderPlugin()],
 }

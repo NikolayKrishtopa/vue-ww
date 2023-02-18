@@ -10,10 +10,14 @@ const app = createApp(App)
 // app.component('modal-window', ModalWindow)
 
 const widget = document.getElementsByTagName('weather-widget')[0]
+const scale = widget.getAttribute('scale') || '1'
 
 const rootNode = document.createElement('div')
-rootNode.id = 'app'
-rootNode.classList.add('page')
-widget.parentNode.replaceChild(rootNode, widget)
+rootNode.id = 'weather-widget'
 
-app.mount('#app')
+widget.parentNode.replaceChild(rootNode, widget)
+rootNode.style.transform = `scale(${scale}) translate(${
+  (-(1 - scale) / 2 / scale) * 100
+}%, ${(-(1 - scale) / 2 / scale) * 100}%)`
+
+app.mount('#weather-widget')
