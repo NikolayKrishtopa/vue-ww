@@ -1,5 +1,8 @@
 <template>
-  <div class="p-5 flex flex-col justify-center">
+  <div
+    class="p-5 flex flex-col justify-center"
+    v-if="Object.keys(city).length > 0"
+  >
     <p class="text-xl">{{ city.name }}, {{ city.sys.country }}</p>
     <div class="flex gap-4 items-center justify-center pr-8">
       <img :src="iconUrl" alt="Icon of the current weather state." />
@@ -29,16 +32,28 @@
 <script>
 export default {
   props: {
-    city: {
+    cityData: {
       type: Object,
       required: true,
     },
   },
-  // methods: {
-  //   async getCityData(){
-  //     const data = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${}&lon=${}&appid=bd296729deede8bb1376f5e9ae64d12b`)
-  //   }
-  // }
+  data() {
+    return {
+      city: {},
+    }
+  },
+  methods: {
+    async getCityData() {
+      try {
+        const res = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${this.cityData.lat}&lon=${this.cityData.lon}&appid=bd296729deede8bb1376f5e9ae64d12b`
+        )
+        this.city = await res.json()
+      } catch (err) {
+        console.log(err)
+      }
+    },
+  },
   computed: {
     windType() {
       if (this.city.wind.speed < 5.4) {
@@ -99,6 +114,9 @@ export default {
     iconUrl() {
       return `http://openweathermap.org/img/wn/${this.city.weather[0].icon}@2x.png`
     },
+  },
+  mounted() {
+    this.getCityData()
   },
 }
 </script>

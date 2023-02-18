@@ -3,7 +3,7 @@
     <button>
       <img src="../img/Burger-icon.svg" alt="Drag and drop button." />
     </button>
-    <p class="text-l">{{ city.name }}, {{ city.sys.country }}</p>
+    <p class="text-l">{{ city.name }}, {{ city.country }}</p>
     <button>
       <img
         src="../img/trash-bin-icon.svg"
