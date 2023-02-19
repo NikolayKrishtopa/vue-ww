@@ -21,10 +21,12 @@
       </div>
       <div class="flex justify-end">
         <img class="mr-2" src="../img/pressure-icon.png" alt="Pressure icon." />
-        <p class="text-l">{{ city.main.pressure }} hPa</p>
+        <p class="text-l">{{ city.main.pressure }}hPa</p>
       </div>
       <p class="text-l">Humidity: {{ city.main.humidity }}%</p>
-      <p class="text-l text-right">Visibility: {{ city.visibility }}km</p>
+      <p class="text-l text-right">
+        Visibility: {{ (city.visibility / 1000).toFixed(1) }}km
+      </p>
     </div>
   </div>
 </template>

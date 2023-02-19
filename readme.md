@@ -29,6 +29,8 @@ This is the weather widget that can easily integrated into any project as simple
 
              <weather-widget scale="0.8" />
 
-- The widget is aligned with the upper left side of the container it has been placed into. Be noted about that and take it into account when you're working to ajust your layout.
+- Once scale has not been applied it take default value 1.
+- If the scale applied the widget is aligned with the upper left side comparing to its position with default scale=1. Be noted about that and take it into account when you're working to ajust your layout.
+- The widget nominally alligned to be located in the centre of the container it has been placed into (in case the container size exceeds the widget size itself).
 
 ## Thanks to everyone for paying attention to my repository.

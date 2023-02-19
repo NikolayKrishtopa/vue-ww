@@ -97,6 +97,19 @@ export default {
         }
       }, 200)
     },
+    getUserGeoData() {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.cities = [
+          ...this.cities,
+          {
+            lon: position.coords.longitude,
+            lat: position.coords.latitude,
+            name: 'your current location',
+            country: '',
+          },
+        ]
+      })
+    },
   },
   watch: {
     searchValue(newValue) {
@@ -106,6 +119,11 @@ export default {
     cities(newValue) {
       localStorage.setItem('weather-widget-cities', JSON.stringify(newValue))
     },
+  },
+  mounted() {
+    if (this.cities.length === 0) {
+      this.getUserGeoData()
+    }
   },
 }
 </script>
