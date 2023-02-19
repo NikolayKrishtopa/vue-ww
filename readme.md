@@ -32,5 +32,6 @@ This is the weather widget that can easily integrated into any project as simple
 - Once scale has not been applied it takes default value "1".
 - If the scale applied the widget is aligned with the upper left side comparing to its position with default scale=1. Be noted about that and take it into account when you're working to ajust your layout.
 - The widget nominally alligned to be located in the centre of the container it has been placed into (in case the container size exceeds the widget size itself).
+- If you use this widget anywhere I would appreciate if you replace my keys for weather and geocoding APIs with yours. Both these APIs are free for use, however, they have a restriction for qty of requests per time which might impact my account. It can be easily configured by revising a couple constants in utils/utils.js config file. TIA.
 
 ## Thanks to everyone for paying attention to my repository.

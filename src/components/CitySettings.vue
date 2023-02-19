@@ -3,7 +3,7 @@
     <button>
       <img src="../img/Burger-icon.svg" alt="Drag and drop button." />
     </button>
-    <p class="text-l overflow-clip max-w-[200px]">
+    <p class="text-l overflow-clip max-w-[200px] text-left">
       {{ city.name }}, {{ city.country }}
     </p>
     <button>
