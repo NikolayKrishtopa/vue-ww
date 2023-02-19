@@ -2,7 +2,7 @@
 
 This project is the test assignment for the VueJS developer position.
 
-This is the weather widget that can easily integrated into any project as simple as input tag <weather-widget /> and import just a single script for that. The widget shows weather data for locations defined by users with ability of changing them per user's preferences.
+This is the weather widget that can easily integrated into any project as simple as input tag < weather-widget /> and import just a single script for that. The widget shows weather data for locations defined by users with ability of changing them per user's preferences.
 
 ## The technical stack used for this project:
 
@@ -20,7 +20,7 @@ This is the weather widget that can easily integrated into any project as simple
 3. OPTIONAL: npm run dev if you want to look at the widget before you place that to anywhere else.
 4. npm run build
 5. in the dist directory you will be able to find the weather-widget directory. You can move that anywhere you want.
-6. in the layout of your project place tag <weather-widget /> in any place and import weatherWidget.js from the widget directory.
+6. in the layout of your project place tag < weather-widget /> in any place and import weatherWidget.js from the widget directory.
 7. Run your project
 
 ## NOTES:
