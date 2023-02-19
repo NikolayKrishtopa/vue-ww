@@ -32,6 +32,10 @@
 </template>
 
 <script>
+import {
+  GENERATE_URL_FOR_WEATHER_API,
+  BASE_WEATHER_ICON_URL,
+} from '../utils/utils'
 export default {
   props: {
     cityData: {
@@ -48,7 +52,7 @@ export default {
     async getCityData() {
       try {
         const res = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${this.cityData.lat}&lon=${this.cityData.lon}&appid=bd296729deede8bb1376f5e9ae64d12b`
+          GENERATE_URL_FOR_WEATHER_API(this.cityData.lat, this.cityData.lon)
         )
         this.city = await res.json()
       } catch (err) {
@@ -114,7 +118,7 @@ export default {
       }
     },
     iconUrl() {
-      return `http://openweathermap.org/img/wn/${this.city.weather[0].icon}@2x.png`
+      return `${BASE_WEATHER_ICON_URL}${this.city.weather[0].icon}@2x.png`
     },
   },
   mounted() {

@@ -13,7 +13,7 @@ This is the weather widget that can easily integrated into any project as simple
 - Yandex geocoding API for cities query
 - Free Open Weather API for fetching weather data.
 
-## This app will require a few simple steps prior to be integrated into your app:
+## This app will require a few simple steps prior to being integrated into your app:
 
 1. Clone the project repository to your local directory.
 2. npm i to install all the required dependencies.
@@ -29,7 +29,7 @@ This is the weather widget that can easily integrated into any project as simple
 
              <weather-widget scale="0.8" />
 
-- Once scale has not been applied it take default value 1.
+- Once scale has not been applied it takes default value "1".
 - If the scale applied the widget is aligned with the upper left side comparing to its position with default scale=1. Be noted about that and take it into account when you're working to ajust your layout.
 - The widget nominally alligned to be located in the centre of the container it has been placed into (in case the container size exceeds the widget size itself).
 

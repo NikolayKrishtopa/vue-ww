@@ -48,6 +48,7 @@
 import CityWeather from './components/CityWeather.vue'
 import CitySettings from './components/CitySettings.vue'
 import Search from './components/Search.vue'
+import { GENERATE_URL_FOR_GEOCODE } from './utils/utils'
 export default {
   components: { CityWeather, CitySettings, Search },
   data() {
@@ -85,9 +86,7 @@ export default {
       clearTimeout(this.queryTimeOut)
       this.queryTimeOut = setTimeout(async () => {
         try {
-          const res = await fetch(
-            `https://geocode-maps.yandex.ru/1.x?geocode=${search},&lang=en_US&apikey=6f502653-5bdd-40dd-881d-ae7f9fb1368f&format=json`
-          )
+          const res = await fetch(GENERATE_URL_FOR_GEOCODE(search))
           const data = await res.json()
           this.searchResults = data.response.GeoObjectCollection.featureMember
           return
