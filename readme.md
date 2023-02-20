@@ -1,7 +1,5 @@
 # Vue weather widget
 
-This project is the test assignment for the VueJS developer position.
-
 This is the weather widget that can easily integrated into any project as simple as input tag < weather-widget /> and import just a single script for that. The widget shows weather data for locations defined by users with ability of changing them per user's preferences.
 
 ## The technical stack used for this project:
