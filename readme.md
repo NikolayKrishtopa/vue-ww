@@ -20,7 +20,7 @@ This is the weather widget that can easily integrated into any project as simple
 3. OPTIONAL: npm run dev if you want to look at the widget before you place that to anywhere else.
 4. npm run build
 5. in the dist directory you will be able to find the weather-widget directory. You can move that anywhere you want.
-6. in the layout of your project place tag < weather-widget /> in any place and import weatherWidget.js from the widget directory.
+6. in the layout of your project place tag < weather-widget /> in any place and import script from weatherWidget.js from the widget directory.
 7. Run your project
 
 ## NOTES:

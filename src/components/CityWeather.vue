@@ -1,7 +1,7 @@
 <template>
   <div
     class="p-5 flex flex-col justify-center"
-    v-if="Object.keys(city).length > 0"
+    v-if="Object.keys(city).length > 0 && !errorMessage"
   >
     <p class="text-xl">{{ city.name }}, {{ city.sys.country }}</p>
     <div class="flex gap-4 items-center justify-center pr-8">
@@ -29,12 +29,18 @@
       </p>
     </div>
   </div>
+  <div v-if="errorMessage || isLoading" class="p-5">
+    <p class="text-xxl w-[90%]">
+      {{ errorMessage ? errorMessage : isLoading ? 'Loading...' : '' }}
+    </p>
+  </div>
 </template>
 
 <script>
 import {
   GENERATE_URL_FOR_WEATHER_API,
   BASE_WEATHER_ICON_URL,
+  GET_WEATHER_ERROR_MESSAGE,
 } from '../utils/utils'
 export default {
   props: {
@@ -46,17 +52,28 @@ export default {
   data() {
     return {
       city: {},
+      errorMessage: null,
+      isLoading: false,
     }
   },
   methods: {
     async getCityData() {
+      this.isLoading = true
       try {
         const res = await fetch(
           GENERATE_URL_FOR_WEATHER_API(this.cityData.lat, this.cityData.lon)
         )
-        this.city = await res.json()
+        if (res.ok) {
+          this.city = await res.json()
+          this.errorMessage = null
+        } else {
+          this.errorMessage = GET_WEATHER_ERROR_MESSAGE
+        }
       } catch (err) {
+        this.errorMessage = GET_WEATHER_ERROR_MESSAGE
         console.log(err)
+      } finally {
+        this.isLoading = false
       }
     },
   },

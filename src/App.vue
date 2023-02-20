@@ -28,6 +28,12 @@
           :key="city.name"
           :city="city"
           @removeCity="removeCity"
+          draggable="true"
+          @dragstart="dragStartHandler($event, city)"
+          @dragleave="dragLeaveHandler"
+          @dragend="dragEndHandler"
+          @dragover="dragOverHandler"
+          @drop="dropHandler($event, city)"
         />
         <Search v-model="searchValue" />
         <div class="max-h-20 overflow-y-auto snap-none flex flex-col gap-2">
@@ -60,6 +66,7 @@ export default {
       cities: localStorage.getItem('weather-widget-cities')
         ? JSON.parse(localStorage.getItem('weather-widget-cities'))
         : [],
+      heldCity: null,
     }
   },
   methods: {
@@ -77,6 +84,7 @@ export default {
           lat: city.GeoObject.Point.pos.split(' ')[1],
           name: city.GeoObject.name,
           country: city.GeoObject.description,
+          position: this.cities.length + 1,
         },
       ]
       this.searchValue = ''
@@ -105,9 +113,59 @@ export default {
             lat: position.coords.latitude,
             name: 'your current location',
             country: '',
+            position: this.cities.length + 1,
           },
         ]
       })
+    },
+    dragStartHandler(e, city) {
+      this.heldCity = city
+    },
+    dragLeaveHandler(e) {
+      e.currentTarget.classList.remove('bg-indigo-400')
+      e.currentTarget.classList.add('bg-indigo-600')
+    },
+    dragEndHandler(e) {},
+    dragOverHandler(e) {
+      e.preventDefault()
+      e.currentTarget.classList.add('bg-indigo-400')
+      e.currentTarget.classList.remove('bg-indigo-600')
+    },
+
+    dropHandler(e, city) {
+      e.preventDefault()
+      e.currentTarget.classList.remove('bg-indigo-400')
+      e.currentTarget.classList.add('bg-indigo-600')
+      if (this.heldCity.position > city.position) {
+        this.cities = this.cities.map((c) => {
+          return c.position >= city.position &&
+            c.position < this.heldCity.position &&
+            c.name !== this.heldCity.name
+            ? { ...c, position: c.position + 1 }
+            : c.name === this.heldCity.name
+            ? { ...c, position: city.position }
+            : c
+        })
+      } else if (this.heldCity.position < city.position) {
+        this.cities = this.cities.map((c) => {
+          return c.position <= city.position &&
+            c.position > this.heldCity.position &&
+            c.name !== this.heldCity.name
+            ? { ...c, position: c.position - 1 }
+            : c.name === this.heldCity.name
+            ? { ...c, position: city.position }
+            : c
+        })
+      }
+
+      this.cities = this.cities.sort(this.sortCities)
+    },
+    sortCities(a, b) {
+      if (a.position > b.position) {
+        return 1
+      } else {
+        return -1
+      }
     },
   },
   watch: {

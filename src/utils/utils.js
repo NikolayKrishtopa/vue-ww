@@ -4,6 +4,9 @@ const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather'
 
 const BASE_WEATHER_ICON_URL = 'http://openweathermap.org/img/wn/'
 
+const GET_WEATHER_ERROR_MESSAGE =
+  'Unable to get weather data from the server. Please try later'
+
 const GEOCODE_CONFIG = {
   LANG: 'en_US',
   API_KEY: '6f502653-5bdd-40dd-881d-ae7f9fb1368f',
@@ -24,4 +27,5 @@ export {
   GENERATE_URL_FOR_GEOCODE,
   GENERATE_URL_FOR_WEATHER_API,
   BASE_WEATHER_ICON_URL,
+  GET_WEATHER_ERROR_MESSAGE,
 }
