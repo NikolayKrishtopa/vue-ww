@@ -2,7 +2,7 @@
 
 This is the weather widget that can easily integrated into any project as simple as input tag < weather-widget /> and import just a single script for that. The widget shows weather data for locations defined by users with ability of changing them per user's preferences.
 
-<div style="width: 100%; display:flex; justify-content: center"><img src="intro_screenshot.JPG"></div>
+<div align="center"><img src="./src/img/intro_screenshot.JPG" /></div>
 
 ## The technical stack used for this project:
 
